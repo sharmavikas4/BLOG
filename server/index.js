@@ -28,6 +28,7 @@ mongoose.connect(process.env.DB).then(()=>{
 //   console.log(error);
   // console.log(error);
 // });
+console.log(process.env.CLIENT_URL);
 const app = express();
 // const storage = multer.diskStorage({
 //   destination: "./public/uploads",
@@ -44,15 +45,15 @@ const app = express();
 // });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-app.use(cors({
-  origin: process.env.CLIENT_URL,
-  credentials: true,
-  methods:  "GET,POST,PUT,DELETE"
-}));
-app.use(function(req, res, next) {
-  res.setHeader('Access-Control-Allow-Origin', process.env.CLIENT_URL);
+// app.use(cors({
+//   origin: process.env.CLIENT_URL,
+//   credentials: true,
+//   methods:  "GET,POST,PUT,DELETE"
+// }));
+app.use((req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin',process.env.CLIENT_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type,X-Auth-Token,Origin,Authorization');
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
