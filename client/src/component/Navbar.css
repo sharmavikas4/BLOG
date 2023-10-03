@@ -1,0 +1,12 @@
+.createButton{
+    background-color: #A084E8;
+    border: none;
+    margin: 1vw 2vw;
+    color: white;
+    border-radius: 5px;
+    padding: 0.5vw 1vw;
+}
+.createButton:hover{
+    color: #A084E8;
+    background-color: white;
+}
