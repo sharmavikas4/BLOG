@@ -28,6 +28,7 @@ mongoose.connect(process.env.DB).then(()=>{
 //   console.log(error);
   // console.log(error);
 // });
+console.log(process.env.CLIENT_URL);
 const app = express();
 // const storage = multer.diskStorage({
 //   destination: "./public/uploads",
