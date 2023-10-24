@@ -45,11 +45,11 @@ const app = express();
 // });
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static("public"));
-// app.use(cors({
-//   origin: process.env.CLIENT_URL,
-//   credentials: true,
-//   methods:  "GET,POST,PUT,DELETE"
-// }));
+app.use(cors({
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods:  "GET,POST,PUT,DELETE"
+}));
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin',process.env.CLIENT_URL);
   res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
@@ -57,19 +57,24 @@ app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Credentials', true);
   next();
 });
-app.set("trust proxy",1);
+// app.set("trust proxy",1);
 app.use(express.json());
+// app.use(session({
+//     secret: "Our little Secret",
+//     resave: false,
+//     saveUninitialized: true,
+//     // store: store,
+//     cookie: {
+//       sameSite: "none",
+//       secure: true,
+//       maxAge: 1000*60*60*24*7
+//     }
+//   }));
 app.use(session({
-    secret: "Our little Secret",
-    resave: false,
-    saveUninitialized: true,
-    // store: store,
-    cookie: {
-      sameSite: "none",
-      secure: true,
-      maxAge: 1000*60*60*24*7
-    }
-  }));
+  secret: "Our little Secret",
+  resave: false,
+  saveUninitialized: false,
+}));
   app.use(passport.initialize());
   app.use(passport.session());
    
