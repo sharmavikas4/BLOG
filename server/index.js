@@ -136,7 +136,7 @@ passport.serializeUser(function(user, done) {
   passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    callbackURL:process.env.URL + "/auth/google/test",
+    callbackURL:"https://" + process.env.VERCEL_URL + "/auth/google/test",
     userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
     scope: ["profile","email"]
   }, function(accessToken, refreshToken, profile, cb) {
